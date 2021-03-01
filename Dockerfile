@@ -22,7 +22,7 @@ RUN cd /tmp && \
     make -j 8 && \
     make install
 RUN cd /usr/local/bin && \
-    ln -s python3.9.2 python
+    ln -s python3.9 python
     
 RUN addgroup ngacareer && \
     adduser -D -G ngacareer -h /ngacareer -s /bin/sh ngacareer
@@ -31,4 +31,3 @@ USER ngacareer
 WORKDIR /ngacareer
 
 ENTRYPOINT ["/usr/bin/dumb-init", "entrypoint.sh"]
-CMD ["python"]
