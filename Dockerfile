@@ -25,7 +25,8 @@ RUN cd /tmp && \
     make -j 8 && \
     make install
 RUN cd /usr/local/bin && \
-    ln -s python${PY_VERSION} python
+    ln -s python${PY_VERSION} python && \
+    rm -rf /var/cache/apk/*
     
 RUN addgroup ngacareer && \
     adduser -D -G ngacareer -h /ngacareer -s /bin/sh ngacareer
