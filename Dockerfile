@@ -23,7 +23,9 @@ RUN cd /tmp && \
     cd Python-${PYTHON_VERSION} && \
     ./configure --enable-optimizations --with-ensurepip=install && \
     make -j 8 && \
-    make install
+    make install && \
+    cd /tmp && rm -rf Python-${PYTHON_VERSION}.tgz
+    
 RUN cd /usr/local/bin && \
     ln -s python${PY_VERSION} python && \
     rm -rf /var/cache/apk/*
