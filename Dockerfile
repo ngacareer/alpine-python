@@ -17,7 +17,7 @@ ENV PYTHON_VERSION 3.9.2
 ENV PY_VERSION 3.9
 
 RUN apk upgrade --no-cache --update && \
-    apk add --no-cache --update dumb-init ca-certificates make bash build-base zlib-dev 
+    apk add --no-cache --update ca-certificates make bash build-base zlib-dev 
 RUN cd /tmp && \
     wget -O - https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz | tar xzvf - && \
     cd Python-${PYTHON_VERSION} && \
@@ -36,4 +36,4 @@ RUN addgroup ngacareer && \
 USER ngacareer
 WORKDIR /ngacareer
 
-ENTRYPOINT ["/usr/bin/dumb-init", "entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "entrypoint.sh"]
